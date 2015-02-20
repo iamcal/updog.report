@@ -26,6 +26,7 @@ h1 {
 
 h2 {
 	font-weight: normal;
+	margin-top: 0;
 }
 
 a {
@@ -49,12 +50,14 @@ a:hover {
 	background-color: white;
 	border: 1px solid #ccc;
 	border-radius: 10px;
-	padding: 10px;
+	padding: 16px;
 }
 
 input {
 	font-size: 200%;
 	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
 
 </style>
