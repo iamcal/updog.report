@@ -1,2 +1,7 @@
 DirectoryIndex index.php
 
+RewriteEngine on
+RewriteCond %{REQUEST_URI}	!\.php$
+RewriteRule ^([a-z0-9-.]+)$	/index.php?domain=$1	[L,QSA]
+
+php_flag display_errors on
