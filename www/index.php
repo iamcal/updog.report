@@ -4,7 +4,7 @@
 ?>
 <html>
 <head>
-<title>Updog</title>
+<title>Updog [n4]</title>
 <meta name="viewport" content="width=320" />
 <meta name="viewport" content="initial-scale=1.0" />
 <meta name="viewport" content="user-scalable=false" />
@@ -74,7 +74,7 @@ input {
 	$domain = '';
 
 	if ($_GET['domain']){
-		include('lib.php');
+		include('../include/lib.php');
 		$domain = clean_domain($_GET['domain']);
 	}
 ?>
