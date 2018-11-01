@@ -4,7 +4,7 @@
 ?>
 <html>
 <head>
-<title>Updog [n4]</title>
+<title>Updog</title>
 <meta name="viewport" content="width=320" />
 <meta name="viewport" content="initial-scale=1.0" />
 <meta name="viewport" content="user-scalable=false" />
