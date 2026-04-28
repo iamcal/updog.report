@@ -1,5 +1,4 @@
 <?php
-
 	function http_test($url, $port){
 
 		$options = array(
@@ -31,7 +30,7 @@
 		curl_setopt($ch, CURLOPT_HEADERFUNCTION, '_http_header_callback');
 		curl_setopt($ch, CURLOPT_ENCODING, 'gzip,deflate');
 		curl_setopt($ch, CURLOPT_USERAGENT, $options['useragent']);
-		
+
 		curl_setopt($ch, CURLOPT_FRESH_CONNECT, 1);
 
 		curl_setopt($ch, CURLOPT_PORT, $port);
@@ -42,7 +41,7 @@
 
 		$start = microtime_ms();
 
-		$GLOBALS['_http_headers'][(string)$ch] = '';
+		$GLOBALS['_http_headers'][spl_object_hash($ch)] = '';
 
 		$raw = curl_exec($ch);
 		$info = curl_getinfo($ch);
@@ -54,9 +53,9 @@
 
 		curl_close($ch);
 
-		$GLOBALS['timings']['http_count']++;
-		$GLOBALS['timings']['http_time'] += $end-$start;
-		$GLOBALS['timings']['http_last_request_time'] = $end-$start;
+		#$GLOBALS['timings']['http_count']++;
+		#$GLOBALS['timings']['http_time'] += $end-$start;
+		#$GLOBALS['timings']['http_last_request_time'] = $end-$start;
 
 		$ret = _http_parse_response($ch, $raw, $info);
 
@@ -69,8 +68,8 @@
 
 	function _http_parse_response($ch, $raw, $info){
 
-		$head_raw = $GLOBALS['_http_headers'][(string)$ch];
-		unset($GLOBALS['_http_headers'][(string)$ch]);
+		$head_raw = $GLOBALS['_http_headers'][spl_object_hash($ch)];
+		unset($GLOBALS['_http_headers'][spl_object_hash($ch)]);
 
 		$exploded = explode("\r\n\r\n", $head_raw, $info['redirect_count']+1);
 		$head = $exploded[$info['redirect_count']];
@@ -146,7 +145,7 @@
 
 	function _http_header_callback($ch, $header_line){
 
-		$GLOBALS['_http_headers'][(string)$ch] .= $header_line;
+		$GLOBALS['_http_headers'][spl_object_hash($ch)] .= $header_line;
 
 		return strlen($header_line);
 	}

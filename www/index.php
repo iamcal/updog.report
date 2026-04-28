@@ -81,7 +81,7 @@ input {
 
 	$domain = '';
 
-	if ($_GET['domain']){
+	if ($_GET['domain'] ?? null){
 		include('../include/lib.php');
 		$domain = clean_domain($_GET['domain']);
 	}
