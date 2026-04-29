@@ -82,7 +82,9 @@
 			}
 		}
 
-		list($head_out, $body_out) = explode("\r\n\r\n", $info['request_header'], 2);
+		$list = explode("\r\n\r\n", $info['request_header'], 2);
+		$head_out = $list[0] ?? null;
+		$body_out = $list[1] ?? null;
 		unset($info['request_header']);
 
 		$headers_in = http_parse_headers($head, '_status');
