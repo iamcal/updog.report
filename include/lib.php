@@ -82,7 +82,7 @@
 			}
 		}
 
-		$list = explode("\r\n\r\n", $info['request_header'], 2);
+		$list = explode("\r\n\r\n", $info['request_header'] ?? '', 2);
 		$head_out = $list[0] ?? null;
 		$body_out = $list[1] ?? null;
 		unset($info['request_header']);
@@ -91,7 +91,7 @@
 		$headers_out = http_parse_headers($head_out, '_request');
 
 		preg_match("/^([A-Z]+)\s/", $headers_out['_request'], $m);
-		$method = $m[1];
+		$method = $m[1] ?? '';
 
 		#log_notice("http", "{$method}-{$info['http_code']} {$info['url']}", $GLOBALS['timings']['http_last_request_time']);
 
